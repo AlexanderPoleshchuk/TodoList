@@ -6,7 +6,7 @@ from django.db import models
 class Task(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок')
     description = models.TextField(blank=True, verbose_name='Описание')
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фото', blank=True)
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фото', blank=True, default='static/img/caralog12.jpg')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     is_completed = models.BooleanField(default=False, verbose_name='Завершено')
     # author = models.ForeignKey('User', on_delete=models.PROTECT, verbose_name='Пользователь')
@@ -16,7 +16,7 @@ class Task(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'Задача'
+        verbose_name = 'Задача(y)'
         verbose_name_plural = 'Задачи'
         ordering = ['-created_at']
 
