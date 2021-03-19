@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Добавить задачу {% endblock %}
+{% block header-photo %} {% static "img/header3.jpeg" %} {% endblock %}
+{% block site-heading %} Create Task {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+                <form action="{% url 'add_task' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-default"> Добавить</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
