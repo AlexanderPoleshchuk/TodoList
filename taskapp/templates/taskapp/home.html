@@ -7,7 +7,7 @@
     {% for task in tasks %}
         <div class="col-md-3">
             <div class="post-preview">
-                <a href="{% url 'task' task.pk %}">
+                <a href="{{ task.get_absolute_url }}">
                     <p class="post-meta">{{ task.created_at }}</p>
 
                     {% if task.photo %}

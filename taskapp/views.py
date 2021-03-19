@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Task
 from django.views.generic import ListView, DetailView
 
@@ -16,5 +16,6 @@ class Home(ListView):
 
 
 def get_task(request, task_id):
-    task = Task.objects.get(pk = task_id)
-    return render(request, template_name='taskapp/task.html', context={'task': task})
+    # task = Task.objects.get(pk = task_id)
+    task_item = get_object_or_404(Task, pk = task_id)
+    return render(request, template_name='taskapp/task.html', context={'task': task_item})
