@@ -3,31 +3,29 @@
 
 {% block title %} {{ title }} {% endblock %}
 {% block content %}
-    <div class="container-fluid container-90">
-        <div class="row">
-            {% for task in tasks %}
-                <div class="col-md-3">
-                    <div class="post-preview">
-                        <a href="{% url 'task' task.pk %}">
-                            <p class="post-meta">{{ task.created_at }}</p>
 
-                            {% if task.photo %}
-                                <img class="img-responsive" src="{{ task.photo.url }}">
-                            {% else %}
-                                <img class="img-responsive" src="{% static 'img/icon2.jpg' %}">
-                            {% endif %}
+    {% for task in tasks %}
+        <div class="col-md-3">
+            <div class="post-preview">
+                <a href="{% url 'task' task.pk %}">
+                    <p class="post-meta">{{ task.created_at }}</p>
 
-                            <h2 class="post-title"> {{ task.title }} </h2>
-                            <h3 class="post-subtitle"> {{ task.description|truncatewords:20 }} </h3>
-                        </a>
-                        {% if task.is_completed %}
-                            <span class="status-done">Выполнено</span>
-                        {% else %}
-                            <span class="status-not-done">Не выполнено</span>
-                        {% endif %}
-                    </div>
-                </div>
-            {% endfor %}
+                    {% if task.photo %}
+                        <img class="img-responsive" src="{{ task.photo.url }}">
+                    {% else %}
+                        <img class="img-responsive" src="{% static 'img/icon2.jpg' %}">
+                    {% endif %}
+
+                    <h2 class="post-title"> {{ task.title }} </h2>
+                    <h3 class="post-subtitle"> {{ task.description|truncatewords:20 }} </h3>
+                </a>
+                {% if task.is_completed %}
+                    <span class="status-done">Выполнено</span>
+                {% else %}
+                    <span class="status-not-done">Не выполнено</span>
+                {% endif %}
+            </div>
         </div>
-    </div>
+    {% endfor %}
+
 {% endblock %}

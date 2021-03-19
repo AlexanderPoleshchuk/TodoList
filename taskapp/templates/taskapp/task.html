@@ -1,2 +1,33 @@
-{{ task.title }}
-{{ task.description }}
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Задача {% endblock %}
+{% block header-photo %} {%  static "img/header2.jpeg" %} {% endblock %}
+{% block site-heading %} Your Task {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 class="section-heading">{{ task.title }}</h2>
+
+                <blockquote>
+                    {% if task.is_completed %}
+                        <span class="status-done">Выполнено</span>
+                    {% else %}
+                        <span class="status-not-done">Не выполнено</span>
+                    {% endif %}
+                </blockquote>
+
+                {% if task.photo %}
+                    <img class="img-responsive" src="{{ task.photo.url }}">
+                {% else %}
+                    <img class="img-responsive" src="{% static 'img/icon2.jpg' %}">
+                {% endif %}
+                <span class="caption text-muted">{{ task.created_at }}</span>
+                <p>{{ task.description }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
