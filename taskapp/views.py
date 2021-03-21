@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from .models import Task
 from django.views.generic import ListView, DetailView, CreateView
 from .forms import TaskForm
 from django.urls import reverse_lazy
+
 
 # Create your views here.
 class Home(ListView):
@@ -26,7 +26,6 @@ class ViewTask(DetailView):
     context_object_name = 'task'
 
 
-
 class CreateTask(CreateView):
     form_class = TaskForm
     template_name = 'taskapp/add_task.html'
@@ -36,4 +35,3 @@ class CreateTask(CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Добавить задачу'
         return context
-
