@@ -4,7 +4,6 @@ from .forms import TaskForm
 from django.urls import reverse_lazy
 
 
-# Create your views here.
 class Home(ListView):
     model = Task
     template_name = 'taskapp/home.html'
