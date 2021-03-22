@@ -5,7 +5,7 @@ from .models import Task
 from django.views.generic import ListView, DetailView, CreateView
 from .forms import TaskForm, UserRegisterForm, UserLoginForm
 from django.urls import reverse_lazy
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class Home(ListView):
     model = Task
@@ -22,13 +22,13 @@ class Home(ListView):
     #     return Task.objects.filter(is_completed=True)
 
 
-class ViewTask(DetailView):
+class ViewTask(LoginRequiredMixin,DetailView):
     model = Task
     template_name = 'taskapp/task.html'
     context_object_name = 'task'
 
 
-class CreateTask(CreateView):
+class CreateTask(LoginRequiredMixin,CreateView):
     form_class = TaskForm
     template_name = 'taskapp/add_task.html'
     success_url = reverse_lazy('home')
