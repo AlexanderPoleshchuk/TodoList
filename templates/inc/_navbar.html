@@ -18,15 +18,28 @@
                 <li>
                     <a href="{% url 'home' %}">Home</a>
                 </li>
-                <li>
-                    <a href="{% url 'add_task' %}">Create task</a>
-                </li>
-                <li>
-                    <a href="{% url 'register' %}">Sign in</a>
-                </li>
-                <li>
-                    <a href="{% url 'login' %}">login</a>
-                </li>
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'add_task' %}">Create task</a>
+                    </li>
+                {% endif %}
+
+                {% if request.user.is_authenticated %}
+
+                    <li>
+                        <a href="{% url 'logout' %}">{{ user.username }} | Logout</a>
+                    </li>
+
+                {% else %}
+                    <li>
+                        <a href="{% url 'register' %}">Sign in</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'login' %}">login</a>
+                    </li>
+
+                {% endif %}
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->
