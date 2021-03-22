@@ -1,3 +1,6 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
+
 from .models import Task
 from django.views.generic import ListView, DetailView, CreateView
 from .forms import TaskForm
@@ -34,3 +37,18 @@ class CreateTask(CreateView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Добавить задачу'
         return context
+
+
+def register(request):
+    if request.method =='POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'taskapp/register.html', {'form':form})
+
+def login(request):
+    return render(request, 'taskapp/login.html')
