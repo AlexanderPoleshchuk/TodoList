@@ -1,9 +1,3 @@
-/*!
- * Small Business v1.0.0 (http://forbetterweb.com)
- * Copyright 2014 ForBetterWeb
- * Licensed under Apache 2.0 (https://github.com/IronSummitMedia/startbootstrap/blob/gh-pages/LICENSE)
- */
-
 body {
   font-family: Roboto, sans-serif;
   font-size: 20px;
@@ -296,8 +290,10 @@ p.post-meta > a {
 }
 footer {
   padding: 50px 0 65px;
+  background-color: #f1f4f7;
 }
 footer .list-inline {
+  text-align: center;
   margin: 0;
   padding: 0;
 }
