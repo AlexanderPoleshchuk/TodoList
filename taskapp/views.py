@@ -1,9 +1,9 @@
-from django.contrib.auth.forms import UserCreationForm
+
 from django.shortcuts import render, redirect
 
 from .models import Task
 from django.views.generic import ListView, DetailView, CreateView
-from .forms import TaskForm
+from .forms import TaskForm, UserRegisterForm
 from django.urls import reverse_lazy
 
 
@@ -41,12 +41,12 @@ class CreateTask(CreateView):
 
 def register(request):
     if request.method =='POST':
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
     else:
-        form = UserCreationForm()
+        form = UserRegisterForm()
 
     return render(request, 'taskapp/register.html', {'form':form})
 
