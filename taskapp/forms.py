@@ -33,6 +33,7 @@ class UserRegisterForm(UserCreationForm):
 
 
 class TaskForm(forms.ModelForm):
+
     class Meta:
         model = Task
         fields = ('title', 'description', 'photo')

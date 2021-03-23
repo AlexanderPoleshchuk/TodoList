@@ -2,30 +2,43 @@
 {% load static %}
 
 {% block title %} {{ title }} {% endblock %}
+
 {% block content %}
+    {% if request.user.is_authenticated %}
+        {% for task in tasks %}
+            <div class="col-md-3">
+                <div class="post-preview">
+                    <a href="{{ task.get_absolute_url }}">
+                        <p class="post-meta">{{ task.created_at }}</p>
 
-    {% for task in tasks %}
-        <div class="col-md-3">
-            <div class="post-preview">
-                <a href="{{ task.get_absolute_url }}">
-                    <p class="post-meta">{{ task.created_at }}</p>
+                        {% if task.photo %}
+                            <img class="img-responsive" src="{{ task.photo.url }}">
+                        {% else %}
+                            <img class="img-responsive" src="{% static 'img/icon2.jpg' %}">
+                        {% endif %}
 
-                    {% if task.photo %}
-                        <img class="img-responsive" src="{{ task.photo.url }}">
+                        <h2 class="post-title"> {{ task.title }} </h2>
+                        <h3 class="post-subtitle"> {{ task.description|truncatewords:20 }} </h3>
+                    </a>
+                    {% if task.is_completed %}
+                        <span class="status-done">Выполнено</span>
                     {% else %}
-                        <img class="img-responsive" src="{% static 'img/icon2.jpg' %}">
+                        <span class="status-not-done">Не выполнено</span>
                     {% endif %}
-
-                    <h2 class="post-title"> {{ task.title }} </h2>
-                    <h3 class="post-subtitle"> {{ task.description|truncatewords:20 }} </h3>
-                </a>
-                {% if task.is_completed %}
-                    <span class="status-done">Выполнено</span>
-                {% else %}
-                    <span class="status-not-done">Не выполнено</span>
-                {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <hr>
+                    <h2 class="section-heading", align="center">Organize your tasks quickly and simply</h2>
+                    <hr>
+                </div>
             </div>
         </div>
-    {% endfor %}
+    {% endif %}
+
 
 {% endblock %}
