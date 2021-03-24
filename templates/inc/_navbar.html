@@ -25,11 +25,9 @@
                 {% endif %}
 
                 {% if request.user.is_authenticated %}
-
                     <li>
                         <a href="{% url 'logout' %}">{{ user.username }} | Logout</a>
                     </li>
-
                 {% else %}
                     <li>
                         <a href="{% url 'register' %}">Sign in</a>
@@ -37,12 +35,9 @@
                     <li>
                         <a href="{% url 'login' %}">login</a>
                     </li>
-
                 {% endif %}
 
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
 </nav>
